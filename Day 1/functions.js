@@ -29,12 +29,18 @@ export function calculateTip(billAmount, tipPercentage) {
 }
 
 export function isLeapYear(year) {
-//   Un año es bisiesto si cumple con las siguientes condiciones:
+  // Verificar si el año es un entero positivo
+  if (!Number.isInteger(year) || year <= 0) {
+    return false;
+  }
 
-// Es divisible por 4, pero no por 100.
-// Si es divisible por 100 debe serlo por 400 también.
-
-  if (year % 4 === 0 && year % 100 !== 0) {
+  // Reglas para determinar si es un año bisiesto
+  if (year % 4 === 0) {
+    if (year % 100 === 0) {
+        return year % 400 === 0;
+    }
     return true;
   }
+  return false;
+
 }
